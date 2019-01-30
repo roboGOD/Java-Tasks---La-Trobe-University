@@ -57,13 +57,14 @@ class Planets2 {
 						else {
 							System.out.println("\nMatches for "+sname+" ("+shr+") are:");
 							for(String name : outputs)
-								System.out.println(name);
+								System.out.println("\t"+name);
 							System.out.println();
 						}
 						break;
 
 						case 2:
 						flag = false;
+						System.out.println("Closing...");
 						break;
 
 						default:

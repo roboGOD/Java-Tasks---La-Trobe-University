@@ -7,10 +7,11 @@ class CalcTickets {
 		this.ticket = ticket;
 	}
 
+	// Validate the ticket string and calculate price.
 	float validateAndCalc() {
 		String s = this.ticket;
 		float price = 0;
-		s = s.toUpperCase();
+		s = s.toUpperCase(); // Works for both upper and lower case
 		int l = s.length();
 		
 		// Validate length of ticket
@@ -46,7 +47,7 @@ class CalcTickets {
 
 			// Check if optional characters are there
 			switch(l) {
-				case 5:
+				case 5: // One optional character
 				char op1 = s.charAt(4);
 				switch(op1) {
 					case 'X':
@@ -67,7 +68,7 @@ class CalcTickets {
 				}
 				break;
 
-				case 6:
+				case 6: // Two optional characters
 				String op2 = s.substring(4);
 				switch(op2) {
 					case "BX":
@@ -84,7 +85,7 @@ class CalcTickets {
 				}
 				break;
 
-				case 7:
+				case 7: // Three optional characters
 				String op3 = s.substring(4);
 				if(op3.equals("XBK"))
 					price += 400.0f;
@@ -100,16 +101,13 @@ class CalcTickets {
 		return price;
 	}
 
-}
-
-class Main {
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		String s = sc.next();
 		CalcTickets C = new CalcTickets(s);
 
 		float p = C.validateAndCalc();
-		if(p > 0)
+		if(p > 0) // Print the price only if it's positive. Negative means ticket is invalid.
 			System.out.println("Price: "+p);
 	}
 }

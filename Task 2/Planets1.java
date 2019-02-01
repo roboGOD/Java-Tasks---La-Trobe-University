@@ -4,6 +4,18 @@ import java.io.*;
 
 class Planets1 {
 
+	static String readLine(FileReader f) throws IOException {
+		String s = "";
+		int i=f.read();
+		if(i == -1) 
+			return null;
+		while(i != -1 && (char)i != '\n') {
+			s += String.valueOf((char)i);
+			i = f.read();
+		}
+		return s;
+	}
+
 	public static void main(String args[]) {
 		try {
 			Scanner sc = new Scanner(System.in);
@@ -12,8 +24,7 @@ class Planets1 {
 			System.out.print("Enter file name: ");
 			String filename = sc.nextLine();
 
-			FileReader ff = new FileReader(filename);
-			BufferedReader f = new BufferedReader(ff);
+			FileReader f = new FileReader(filename);
 			
 			// Get HR Code
 			System.out.print("Enter HR Code: ");
@@ -21,7 +32,8 @@ class Planets1 {
 
 			String s;
 			boolean notFound = true;
-			while((s=f.readLine())!=null) { // Read the file line by line.
+	
+			while((s=readLine(f))!=null) { // Read the file line by line.
 				String sarr[] = new String[3];
 				int k = 0;
 				String temp="";

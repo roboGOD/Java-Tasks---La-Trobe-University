@@ -4,6 +4,18 @@ import java.util.ArrayList;
 
 class Planets2 {
 
+	static String readLine(FileReader f) throws IOException {
+		String s = "";
+		int i=f.read();
+		if(i == -1) 
+			return null;
+		while(i != -1 && (char)i != '\n') {
+			s += String.valueOf((char)i);
+			i = f.read();
+		}
+		return s;
+	}
+
 	public static void main(String args[]) {
 		try {
 			Scanner sc = new Scanner(System.in);
@@ -11,7 +23,7 @@ class Planets2 {
 			System.out.print("Enter file name: ");
 			String filename = sc.nextLine();
 
-			RandomAccessFile f = new RandomAccessFile(filename, "r");
+			FileReader f = new FileReader(filename);
 			// checks if this file is empty
 			if(f.read() == -1)
 				System.out.println("This file is empty.");
@@ -21,13 +33,14 @@ class Planets2 {
 				// 1. Show Planet Connections
 				// 2. Exit
 				// Enter choice >>
+				f.close();
 				boolean flag = true;
 				String sname = null;
 				String shr = null;
 				ArrayList<String> outputs = new ArrayList<String>();
 				
 				while(flag) {
-					f.seek(0); // Move the pointer at the begining of the file
+					f = new FileReader(filename); // Move the pointer at the begining of the file
 					outputs.clear(); // Empty the ArrayList
 
 					int choice;
@@ -40,7 +53,7 @@ class Planets2 {
 						sname = sc.nextLine(); // Name of the star
 						
 						String s;
-						while((s=f.readLine()) != null) { // Keep reading file line by line
+						while((s=readLine(f)) != null) { // Keep reading file line by line
 							String sarr[] = new String[4];
 							int k = 0;
 							String temp="";
@@ -85,6 +98,7 @@ class Planets2 {
 						default: // Invalid option
 						System.out.println("The option entered is incorrect.");
 					}
+					f.close();
 				}
 			}
 		}

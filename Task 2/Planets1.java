@@ -22,7 +22,20 @@ class Planets1 {
 			String s;
 			boolean notFound = true;
 			while((s=f.readLine())!=null) { // Read the file line by line.
-				String sarr[] = s.split(";"); // Split the line by ';'
+				String sarr[] = new String[3];
+				int k = 0;
+				String temp="";
+				for(int i=0; i<s.length(); i++) {
+					if(s.charAt(i) != ';') {
+						temp += String.valueOf(s.charAt(i));
+					}
+					else {
+						sarr[k] = temp;
+						temp = "";
+						k++;
+					}
+				}
+				sarr[k] = temp;
 				if(sarr[2].equalsIgnoreCase(code)) { // Check if HR Code matches with the given one.
 					notFound = false;
 					System.out.println("\""+sarr[2]+"\""+" is "+sarr[0]+" also known as "+sarr[1]+"."); // print the match

@@ -41,7 +41,20 @@ class Planets2 {
 						
 						String s;
 						while((s=f.readLine()) != null) { // Keep reading file line by line
-							String sarr[] = s.split(";"); // Split the line by the delimiter ';'
+							String sarr[] = new String[4];
+							int k = 0;
+							String temp="";
+							for(int i=0; i<s.length(); i++) {
+								if(s.charAt(i) != ';') {
+									temp += String.valueOf(s.charAt(i));
+								}
+								else {
+									sarr[k] = temp;
+									temp = "";
+									k++;
+								}
+							}
+							sarr[k] = temp;
 							if(sarr[0].equalsIgnoreCase(sname)) { // Check if the first star name matches with the given one
 								outputs.add(sarr[2]+"\t"+sarr[3]); // Add to output list
 								shr = sarr[1];
